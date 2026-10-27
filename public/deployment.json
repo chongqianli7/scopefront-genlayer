@@ -1,1 +1,11 @@
-{"address":"","owner":"","id":"","chainId":61999,"rpc":"https://studio.genlayer.com/api"}
+{
+  "address": "0x7a25061Ef97f8f7f269988C7d4F85b029776C86B",
+  "owner": "0x23b39fa74ad2f5751b8450dc31f965ac41ac7555",
+  "id": "web-1793128145389",
+  "sourceSha256": "beceb3c163bc42faa7ce6731cda0f7ab5de4e79137c60e2c9e21c0a356f6a0f9",
+  "chainId": 61999,
+  "rpc": "https://studio.genlayer.com/api",
+  "deploymentTx": "0xce8f57c2183d77e5b807a5fc8b6320fb2b96f9b692ecfc1d642c4ec8dc6fc649",
+  "comparisonTx": "0xd84b281ea4cdfa05c734b36ba997317c619e16836d73ca4fc76e5df7a8ecdbc5",
+  "confirmationTx": "0x1c14b9d19c68bc6fe6eb8b4335ea2e2378c77e48c194de827050b278d567be14"
+}

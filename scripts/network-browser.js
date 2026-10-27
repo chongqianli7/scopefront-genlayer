@@ -110,7 +110,7 @@ async function step(name, member, method, args, expected = true) {
     throw Error(name + " did not return successful agreeing execution");
   if (!expected) {
     const leaders = s.receipt.leaders;
-    if (!leaders.some((l) => l.execution_result === "ERROR"))
+    if (!leaders.some((l) => l.mode === "leader" && l.execution_result === "ERROR"))
       throw Error(name + " was not a confirmed rejected execution");
   }
   if (method === "deploy") {

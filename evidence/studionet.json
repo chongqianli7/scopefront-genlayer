@@ -1,0 +1,730 @@
+{
+  "protocol": "scopefront-1",
+  "network": 61999,
+  "fullConsensus": true,
+  "fixture": "Synthetic website brief and quotations; all four test wallets controlled by one test operator, not independent businesses.",
+  "address": "0x7a25061Ef97f8f7f269988C7d4F85b029776C86B",
+  "owner": "0x23b39fa74ad2f5751b8450dc31f965ac41ac7555",
+  "id": "web-1793128145389",
+  "sourceSha256": "beceb3c163bc42faa7ce6731cda0f7ab5de4e79137c60e2c9e21c0a356f6a0f9",
+  "steps": {
+    "01-deploy": {
+      "hash": "0xce8f57c2183d77e5b807a5fc8b6320fb2b96f9b692ecfc1d642c4ec8dc6fc649",
+      "method": "deploy",
+      "args": [],
+      "signer": "0x23b39fa74ad2f5751b8450dc31f965ac41ac7555",
+      "receipt": {
+        "status": 7,
+        "statusName": "FINALIZED",
+        "result": 6,
+        "from": "0x23B39fA74aD2F5751b8450dc31f965AC41ac7555",
+        "to": "0x7a25061Ef97f8f7f269988C7d4F85b029776C86B",
+        "contract": "0x7a25061Ef97f8f7f269988C7d4F85b029776C86B",
+        "leaders": [
+          {
+            "execution_result": "SUCCESS",
+            "vote": null,
+            "mode": "leader",
+            "result": {
+              "status": "return"
+            },
+            "genvm_result": {
+              "stderr": "",
+              "stdout": "",
+              "raw_error": null,
+              "error_code": null,
+              "error_description": null
+            }
+          },
+          {
+            "execution_result": "SUCCESS",
+            "vote": "agree",
+            "mode": "validator",
+            "result": {
+              "status": "return"
+            },
+            "genvm_result": {
+              "stderr": "",
+              "stdout": "",
+              "raw_error": null,
+              "error_code": null,
+              "error_description": null
+            }
+          }
+        ],
+        "votes": {
+          "0x045291B293B9D68969c18B6637A8258038cf787A": "agree",
+          "0x336458747913FE397be82c4F0926ACeB3ab13618": "idle",
+          "0x378aED3bA912Ce77C3C66155961A7e61C2fE8F3B": "agree",
+          "0xB4EE99165ffe987E64B7b72e45a753309c501eef": "idle",
+          "0xe06A34A1eBd398AF3399d08593B8c3C433CdD947": "agree"
+        }
+      },
+      "done": true
+    },
+    "02-open": {
+      "hash": "0x102829367151e47176c9ea751fd50f671dc17d1ab3bfadc7b54a65993172539a",
+      "method": "open_request",
+      "args": [
+        "web-1793128145389",
+        "Four-page website quotations",
+        "USD",
+        "[\"Create a responsive four-page website.\",\"Include original editable design source files.\",\"Include thirty days of post-launch bug fixes.\"]",
+        "[\"0x73f7428d8100477c96c32087b7fdcf3f94c0547f\",\"0xfced59b6de0765875ab68213110ee3e928c780ef\",\"0xb5e264e095552f125c28f97378b348b6de9d70ec\"]"
+      ],
+      "signer": "0x23b39fa74ad2f5751b8450dc31f965ac41ac7555",
+      "receipt": {
+        "status": 7,
+        "statusName": "FINALIZED",
+        "result": 6,
+        "from": "0x23B39fA74aD2F5751b8450dc31f965AC41ac7555",
+        "to": "0x7a25061Ef97f8f7f269988C7d4F85b029776C86B",
+        "leaders": [
+          {
+            "execution_result": "SUCCESS",
+            "vote": null,
+            "mode": "leader",
+            "result": {
+              "status": "return"
+            },
+            "genvm_result": {
+              "stderr": "",
+              "stdout": "",
+              "raw_error": null,
+              "error_code": null,
+              "error_description": null
+            }
+          },
+          {
+            "execution_result": "ERROR",
+            "vote": "idle",
+            "mode": "validator",
+            "result": {
+              "status": "contract_error"
+            },
+            "genvm_result": {
+              "stderr": "Validator execution cancelled after quorum",
+              "stdout": "",
+              "raw_error": {
+                "fatal": false,
+                "causes": [
+                  "VALIDATOR_QUORUM_REACHED"
+                ]
+              },
+              "error_code": "CONSENSUS_VALIDATOR_QUORUM_REACHED"
+            }
+          }
+        ],
+        "votes": {
+          "0x007d6451555Df7765c707284F844137927aE4e5E": "idle",
+          "0x0eb3859451817bC25Cc717D4F676D54D0D3aD0aE": "agree",
+          "0x63d72fE364368491E62a42B9C73c317Ce1ca8434": "agree",
+          "0xB4EE99165ffe987E64B7b72e45a753309c501eef": "agree",
+          "0xF7D08d12dB37D3e02D1833b5cB7e56B07F114186": "idle"
+        }
+      },
+      "done": true
+    },
+    "03-quote": {
+      "hash": "0x76a2a4cc32a496f0db1a3e4a0f8132ab0e9437a6b32591ce2222b619768280c6",
+      "method": "quote",
+      "args": [
+        "0x23b39fa74ad2f5751b8450dc31f965ac41ac7555",
+        "web-1793128145389",
+        80000,
+        "Fixed all-inclusive total: 800 USD. Includes a responsive four-page website. Original editable design source files are excluded. Thirty days of post-launch bug fixes are excluded."
+      ],
+      "signer": "0x73f7428d8100477c96c32087b7fdcf3f94c0547f",
+      "receipt": {
+        "status": 7,
+        "statusName": "FINALIZED",
+        "result": 6,
+        "from": "0x73f7428D8100477c96c32087b7fdCF3F94C0547F",
+        "to": "0x7a25061Ef97f8f7f269988C7d4F85b029776C86B",
+        "leaders": [
+          {
+            "execution_result": "SUCCESS",
+            "vote": null,
+            "mode": "leader",
+            "result": {
+              "status": "return"
+            },
+            "genvm_result": {
+              "stderr": "",
+              "stdout": "",
+              "raw_error": null,
+              "error_code": null,
+              "error_description": null
+            }
+          },
+          {
+            "execution_result": "ERROR",
+            "vote": "idle",
+            "mode": "validator",
+            "result": {
+              "status": "contract_error"
+            },
+            "genvm_result": {
+              "stderr": "Validator execution cancelled after quorum",
+              "stdout": "",
+              "raw_error": {
+                "fatal": false,
+                "causes": [
+                  "VALIDATOR_QUORUM_REACHED"
+                ]
+              },
+              "error_code": "CONSENSUS_VALIDATOR_QUORUM_REACHED"
+            }
+          }
+        ],
+        "votes": {
+          "0x336458747913FE397be82c4F0926ACeB3ab13618": "agree",
+          "0xB4EE99165ffe987E64B7b72e45a753309c501eef": "agree",
+          "0xF7D08d12dB37D3e02D1833b5cB7e56B07F114186": "agree",
+          "0xcab45E3fe9cC9592B5C378E47734E022b7Df80c9": "idle",
+          "0xe06A34A1eBd398AF3399d08593B8c3C433CdD947": "idle"
+        }
+      },
+      "done": true
+    },
+    "04-quote": {
+      "hash": "0x65526b7a3b98f0453ab72db7def88d2c781ab2b98680e4b806b456c92a5a8505",
+      "method": "quote",
+      "args": [
+        "0x23b39fa74ad2f5751b8450dc31f965ac41ac7555",
+        "web-1793128145389",
+        100000,
+        "Fixed all-inclusive total: 1000 USD. Includes a responsive four-page website and original editable design source files. Thirty days of post-launch bug fixes are excluded."
+      ],
+      "signer": "0xfced59b6de0765875ab68213110ee3e928c780ef",
+      "receipt": {
+        "status": 7,
+        "statusName": "FINALIZED",
+        "result": 6,
+        "from": "0xfCed59b6DE0765875aB68213110Ee3e928C780ef",
+        "to": "0x7a25061Ef97f8f7f269988C7d4F85b029776C86B",
+        "leaders": [
+          {
+            "execution_result": "SUCCESS",
+            "vote": null,
+            "mode": "leader",
+            "result": {
+              "status": "return"
+            },
+            "genvm_result": {
+              "stderr": "",
+              "stdout": "",
+              "raw_error": null,
+              "error_code": null,
+              "error_description": null
+            }
+          },
+          {
+            "execution_result": "ERROR",
+            "vote": "idle",
+            "mode": "validator",
+            "result": {
+              "status": "contract_error"
+            },
+            "genvm_result": {
+              "stderr": "Validator execution cancelled after quorum",
+              "stdout": "",
+              "raw_error": {
+                "fatal": false,
+                "causes": [
+                  "VALIDATOR_QUORUM_REACHED"
+                ]
+              },
+              "error_code": "CONSENSUS_VALIDATOR_QUORUM_REACHED"
+            }
+          }
+        ],
+        "votes": {
+          "0x007d6451555Df7765c707284F844137927aE4e5E": "agree",
+          "0x378aED3bA912Ce77C3C66155961A7e61C2fE8F3B": "idle",
+          "0x63d72fE364368491E62a42B9C73c317Ce1ca8434": "idle",
+          "0x9C182DE7F93AdbE8ee3D62570613eC23c5683cAc": "agree",
+          "0xCe0B66448435cA53665C954705Abd753515594Cf": "agree"
+        }
+      },
+      "done": true
+    },
+    "05-quote": {
+      "hash": "0x95edf3d08dce32450f4c17a490f1df21d8c7899769d5e5e421055d0884abbbd0",
+      "method": "quote",
+      "args": [
+        "0x23b39fa74ad2f5751b8450dc31f965ac41ac7555",
+        "web-1793128145389",
+        120000,
+        "Fixed all-inclusive total: 1200 USD. Includes a responsive four-page website and original editable design source files. Thirty days of post-launch bug fixes are excluded."
+      ],
+      "signer": "0xb5e264e095552f125c28f97378b348b6de9d70ec",
+      "receipt": {
+        "status": 7,
+        "statusName": "FINALIZED",
+        "result": 6,
+        "from": "0xB5E264e095552F125c28f97378b348B6dE9D70EC",
+        "to": "0x7a25061Ef97f8f7f269988C7d4F85b029776C86B",
+        "leaders": [
+          {
+            "execution_result": "SUCCESS",
+            "vote": null,
+            "mode": "leader",
+            "result": {
+              "status": "return"
+            },
+            "genvm_result": {
+              "stderr": "",
+              "stdout": "",
+              "raw_error": null,
+              "error_code": null,
+              "error_description": null
+            }
+          },
+          {
+            "execution_result": "SUCCESS",
+            "vote": "agree",
+            "mode": "validator",
+            "result": {
+              "status": "return"
+            },
+            "genvm_result": {
+              "stderr": "",
+              "stdout": "",
+              "raw_error": null,
+              "error_code": null,
+              "error_description": null
+            }
+          }
+        ],
+        "votes": {
+          "0x045291B293B9D68969c18B6637A8258038cf787A": "agree",
+          "0x378aED3bA912Ce77C3C66155961A7e61C2fE8F3B": "agree",
+          "0x4441Ebe37E72c039B73f1D6CF8C6DEe277FE547a": "agree",
+          "0x5847AF34a4e5bA96490f8c883598f68EC9B0B907": "idle",
+          "0x5e84e17266a193077728229751aC8A1dD24be146": "idle"
+        }
+      },
+      "done": true
+    },
+    "06-compare": {
+      "hash": "0xd84b281ea4cdfa05c734b36ba997317c619e16836d73ca4fc76e5df7a8ecdbc5",
+      "method": "compare",
+      "args": [
+        "0x23b39fa74ad2f5751b8450dc31f965ac41ac7555",
+        "web-1793128145389"
+      ],
+      "signer": "0x23b39fa74ad2f5751b8450dc31f965ac41ac7555",
+      "receipt": {
+        "status": 7,
+        "statusName": "FINALIZED",
+        "result": 6,
+        "from": "0x23B39fA74aD2F5751b8450dc31f965AC41ac7555",
+        "to": "0x7a25061Ef97f8f7f269988C7d4F85b029776C86B",
+        "leaders": [
+          {
+            "execution_result": "SUCCESS",
+            "vote": null,
+            "mode": "leader",
+            "result": {
+              "status": "return"
+            },
+            "genvm_result": {
+              "stderr": "",
+              "stdout": "",
+              "raw_error": null,
+              "error_code": null,
+              "error_description": null
+            }
+          },
+          {
+            "execution_result": "SUCCESS",
+            "vote": "agree",
+            "mode": "validator",
+            "result": {
+              "status": "return"
+            },
+            "genvm_result": {
+              "stderr": "",
+              "stdout": "",
+              "raw_error": null,
+              "error_code": null,
+              "error_description": null
+            }
+          }
+        ],
+        "votes": {
+          "0x045291B293B9D68969c18B6637A8258038cf787A": "agree",
+          "0x4441Ebe37E72c039B73f1D6CF8C6DEe277FE547a": "idle",
+          "0x63d72fE364368491E62a42B9C73c317Ce1ca8434": "agree",
+          "0xF7D08d12dB37D3e02D1833b5cB7e56B07F114186": "agree",
+          "0xb9ed1258763dfFC83356b15e8A20236B86E42ba2": "disagree"
+        }
+      },
+      "done": true
+    },
+    "07-dominated-selection-denied": {
+      "hash": "0x30968f5f152473ea69a1a8cd3f148d57e06432e2af3fe39abd2244db393f348b",
+      "method": "select",
+      "args": [
+        "web-1793128145389",
+        "0xb5e264e095552f125c28f97378b348b6de9d70ec"
+      ],
+      "signer": "0x23b39fa74ad2f5751b8450dc31f965ac41ac7555",
+      "receipt": {
+        "status": 7,
+        "statusName": "FINALIZED",
+        "result": 6,
+        "from": "0x23B39fA74aD2F5751b8450dc31f965AC41ac7555",
+        "to": "0x7a25061Ef97f8f7f269988C7d4F85b029776C86B",
+        "leaders": [
+          {
+            "execution_result": "ERROR",
+            "vote": null,
+            "mode": "leader",
+            "result": {
+              "raw": "AU5PVF9GUk9OVElFUg==",
+              "status": "rollback",
+              "payload": "NOT_FRONTIER"
+            },
+            "genvm_result": {
+              "stderr": "",
+              "stdout": "",
+              "raw_error": null,
+              "error_code": null,
+              "error_description": null
+            }
+          },
+          {
+            "execution_result": "ERROR",
+            "vote": "agree",
+            "mode": "validator",
+            "result": {
+              "raw": "AU5PVF9GUk9OVElFUg==",
+              "status": "rollback",
+              "payload": "NOT_FRONTIER"
+            },
+            "genvm_result": {
+              "stderr": "",
+              "stdout": "",
+              "raw_error": null,
+              "error_code": null,
+              "error_description": null
+            }
+          }
+        ],
+        "votes": {
+          "0x0eb3859451817bC25Cc717D4F676D54D0D3aD0aE": "agree",
+          "0x336458747913FE397be82c4F0926ACeB3ab13618": "agree",
+          "0x4619C8420D50c9dE477DB2CBb7b4863A041688CB": "idle",
+          "0x5847AF34a4e5bA96490f8c883598f68EC9B0B907": "idle",
+          "0xb9ed1258763dfFC83356b15e8A20236B86E42ba2": "agree"
+        }
+      },
+      "done": true
+    },
+    "08-select": {
+      "hash": "0x139b96abbc0496ec1658ab1efdac9e73d49eb75b3a5ba030bf7a417965a4a0f2",
+      "method": "select",
+      "args": [
+        "web-1793128145389",
+        "0xfced59b6de0765875ab68213110ee3e928c780ef"
+      ],
+      "signer": "0x23b39fa74ad2f5751b8450dc31f965ac41ac7555",
+      "receipt": {
+        "status": 7,
+        "statusName": "FINALIZED",
+        "result": 6,
+        "from": "0x23B39fA74aD2F5751b8450dc31f965AC41ac7555",
+        "to": "0x7a25061Ef97f8f7f269988C7d4F85b029776C86B",
+        "leaders": [
+          {
+            "execution_result": "SUCCESS",
+            "vote": null,
+            "mode": "leader",
+            "result": {
+              "status": "return"
+            },
+            "genvm_result": {
+              "stderr": "",
+              "stdout": "",
+              "raw_error": null,
+              "error_code": null,
+              "error_description": null
+            }
+          },
+          {
+            "execution_result": "SUCCESS",
+            "vote": "agree",
+            "mode": "validator",
+            "result": {
+              "status": "return"
+            },
+            "genvm_result": {
+              "stderr": "",
+              "stdout": "",
+              "raw_error": null,
+              "error_code": null,
+              "error_description": null
+            }
+          }
+        ],
+        "votes": {
+          "0x007d6451555Df7765c707284F844137927aE4e5E": "agree",
+          "0x5e84e17266a193077728229751aC8A1dD24be146": "idle",
+          "0x63d72fE364368491E62a42B9C73c317Ce1ca8434": "agree",
+          "0xB4EE99165ffe987E64B7b72e45a753309c501eef": "agree",
+          "0xF7D08d12dB37D3e02D1833b5cB7e56B07F114186": "agree"
+        }
+      },
+      "done": true
+    },
+    "09-wrong-vendor-denied": {
+      "hash": "0x61797a2e62551a89443486abf26a14498128d233b087b08e64751bbe0688e268",
+      "method": "confirm",
+      "args": [
+        "0x23b39fa74ad2f5751b8450dc31f965ac41ac7555",
+        "web-1793128145389"
+      ],
+      "signer": "0x73f7428d8100477c96c32087b7fdcf3f94c0547f",
+      "receipt": {
+        "status": 7,
+        "statusName": "FINALIZED",
+        "result": 6,
+        "from": "0x73f7428D8100477c96c32087b7fdCF3F94C0547F",
+        "to": "0x7a25061Ef97f8f7f269988C7d4F85b029776C86B",
+        "leaders": [
+          {
+            "execution_result": "ERROR",
+            "vote": null,
+            "mode": "leader",
+            "result": {
+              "raw": "AU5PVF9TRUxFQ1RFRF9WRU5ET1I=",
+              "status": "rollback",
+              "payload": "NOT_SELECTED_VENDOR"
+            },
+            "genvm_result": {
+              "stderr": "",
+              "stdout": "",
+              "raw_error": null,
+              "error_code": null,
+              "error_description": null
+            }
+          },
+          {
+            "execution_result": "ERROR",
+            "vote": "agree",
+            "mode": "validator",
+            "result": {
+              "raw": "AU5PVF9TRUxFQ1RFRF9WRU5ET1I=",
+              "status": "rollback",
+              "payload": "NOT_SELECTED_VENDOR"
+            },
+            "genvm_result": {
+              "stderr": "",
+              "stdout": "",
+              "raw_error": null,
+              "error_code": null,
+              "error_description": null
+            }
+          }
+        ],
+        "votes": {
+          "0x336458747913FE397be82c4F0926ACeB3ab13618": "idle",
+          "0x5e84e17266a193077728229751aC8A1dD24be146": "agree",
+          "0xB4EE99165ffe987E64B7b72e45a753309c501eef": "agree",
+          "0xF7D08d12dB37D3e02D1833b5cB7e56B07F114186": "agree",
+          "0xb9ed1258763dfFC83356b15e8A20236B86E42ba2": "idle"
+        }
+      },
+      "done": true
+    },
+    "10-confirm": {
+      "hash": "0x1c14b9d19c68bc6fe6eb8b4335ea2e2378c77e48c194de827050b278d567be14",
+      "method": "confirm",
+      "args": [
+        "0x23b39fa74ad2f5751b8450dc31f965ac41ac7555",
+        "web-1793128145389"
+      ],
+      "signer": "0xfced59b6de0765875ab68213110ee3e928c780ef",
+      "receipt": {
+        "status": 7,
+        "statusName": "FINALIZED",
+        "result": 6,
+        "from": "0xfCed59b6DE0765875aB68213110Ee3e928C780ef",
+        "to": "0x7a25061Ef97f8f7f269988C7d4F85b029776C86B",
+        "leaders": [
+          {
+            "execution_result": "SUCCESS",
+            "vote": null,
+            "mode": "leader",
+            "result": {
+              "status": "return"
+            },
+            "genvm_result": {
+              "stderr": "",
+              "stdout": "",
+              "raw_error": null,
+              "error_code": null,
+              "error_description": null
+            }
+          },
+          {
+            "execution_result": "SUCCESS",
+            "vote": "agree",
+            "mode": "validator",
+            "result": {
+              "status": "return"
+            },
+            "genvm_result": {
+              "stderr": "",
+              "stdout": "",
+              "raw_error": null,
+              "error_code": null,
+              "error_description": null
+            }
+          }
+        ],
+        "votes": {
+          "0x045291B293B9D68969c18B6637A8258038cf787A": "idle",
+          "0x4868b172ddEBC18b5219aaCeAB77ae0Df330c83A": "idle",
+          "0x5D9Ee6E9aAF2F0b739314A52dd9Da57cd8866dA8": "agree",
+          "0x63d72fE364368491E62a42B9C73c317Ce1ca8434": "agree",
+          "0xb04cdDC4a6Ff6A0aDF715cfe00Fa307b901cebD4": "agree"
+        }
+      },
+      "done": true
+    }
+  },
+  "record": {
+    "criteria": [
+      "Create a responsive four-page website.",
+      "Include original editable design source files.",
+      "Include thirty days of post-launch bug fixes."
+    ],
+    "currency": "USD",
+    "frontier": {
+      "candidates": [
+        "0x73f7428d8100477c96c32087b7fdcf3f94c0547f",
+        "0xfced59b6de0765875ab68213110ee3e928c780ef"
+      ],
+      "comparisons": [
+        {
+          "dominated_by": [],
+          "vendor": "0x73f7428d8100477c96c32087b7fdcf3f94c0547f"
+        },
+        {
+          "dominated_by": [],
+          "vendor": "0xfced59b6de0765875ab68213110ee3e928c780ef"
+        },
+        {
+          "dominated_by": [
+            "0xfced59b6de0765875ab68213110ee3e928c780ef"
+          ],
+          "vendor": "0xb5e264e095552f125c28f97378b348b6de9d70ec"
+        }
+      ],
+      "needs_clarification": []
+    },
+    "id": "web-1793128145389",
+    "offers": {
+      "0x73f7428d8100477c96c32087b7fdcf3f94c0547f": {
+        "cents": 80000,
+        "terms": "Fixed all-inclusive total: 800 USD. Includes a responsive four-page website. Original editable design source files are excluded. Thirty days of post-launch bug fixes are excluded.",
+        "vendor": "0x73f7428d8100477c96c32087b7fdcf3f94c0547f"
+      },
+      "0xb5e264e095552f125c28f97378b348b6de9d70ec": {
+        "cents": 120000,
+        "terms": "Fixed all-inclusive total: 1200 USD. Includes a responsive four-page website and original editable design source files. Thirty days of post-launch bug fixes are excluded.",
+        "vendor": "0xb5e264e095552f125c28f97378b348b6de9d70ec"
+      },
+      "0xfced59b6de0765875ab68213110ee3e928c780ef": {
+        "cents": 100000,
+        "terms": "Fixed all-inclusive total: 1000 USD. Includes a responsive four-page website and original editable design source files. Thirty days of post-launch bug fixes are excluded.",
+        "vendor": "0xfced59b6de0765875ab68213110ee3e928c780ef"
+      }
+    },
+    "owner": "0x23b39fa74ad2f5751b8450dc31f965ac41ac7555",
+    "protocol": "scopefront-1",
+    "rows": [
+      {
+        "cells": [
+          {
+            "criterion": 0,
+            "label": "INCLUDED",
+            "quote": "Includes a responsive four-page website.",
+            "reason": "Explicit unconditional promise of the complete requested website at the fixed all-inclusive total."
+          },
+          {
+            "criterion": 1,
+            "label": "EXCLUDED",
+            "quote": "Original editable design source files are excluded.",
+            "reason": "Explicit denial of the requested design source files."
+          },
+          {
+            "criterion": 2,
+            "label": "EXCLUDED",
+            "quote": "Thirty days of post-launch bug fixes are excluded.",
+            "reason": "Explicit denial of the requested post-launch bug fixes."
+          }
+        ],
+        "vendor": "0x73f7428d8100477c96c32087b7fdcf3f94c0547f"
+      },
+      {
+        "cells": [
+          {
+            "criterion": 0,
+            "label": "INCLUDED",
+            "quote": "Includes a responsive four-page website",
+            "reason": "Explicit unconditional promise of the complete requested website at the fixed all-inclusive total."
+          },
+          {
+            "criterion": 1,
+            "label": "INCLUDED",
+            "quote": "original editable design source files",
+            "reason": "Explicit unconditional promise to include the requested editable design source files."
+          },
+          {
+            "criterion": 2,
+            "label": "EXCLUDED",
+            "quote": "Thirty days of post-launch bug fixes are excluded.",
+            "reason": "Explicit denial of the requested post-launch bug fixes."
+          }
+        ],
+        "vendor": "0xfced59b6de0765875ab68213110ee3e928c780ef"
+      },
+      {
+        "cells": [
+          {
+            "criterion": 0,
+            "label": "INCLUDED",
+            "quote": "Includes a responsive four-page website",
+            "reason": "Explicit unconditional promise of the complete requested website at the fixed all-inclusive total."
+          },
+          {
+            "criterion": 1,
+            "label": "INCLUDED",
+            "quote": "original editable design source files",
+            "reason": "Explicit unconditional promise to include the requested editable design source files."
+          },
+          {
+            "criterion": 2,
+            "label": "EXCLUDED",
+            "quote": "Thirty days of post-launch bug fixes are excluded.",
+            "reason": "Explicit denial of the requested post-launch bug fixes."
+          }
+        ],
+        "vendor": "0xb5e264e095552f125c28f97378b348b6de9d70ec"
+      }
+    ],
+    "selected": "0xfced59b6de0765875ab68213110ee3e928c780ef",
+    "status": "CONFIRMED",
+    "title": "Four-page website quotations",
+    "vendors": [
+      "0x73f7428d8100477c96c32087b7fdcf3f94c0547f",
+      "0xfced59b6de0765875ab68213110ee3e928c780ef",
+      "0xb5e264e095552f125c28f97378b348b6de9d70ec"
+    ]
+  },
+  "error": null
+}

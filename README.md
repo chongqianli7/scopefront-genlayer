@@ -2,7 +2,7 @@
 
 A service quotation desk where vendors sign their own fixed-price terms, GenLayer validators agree on each scope item's coverage, and deterministic code retains the price/scope trade-offs. A buyer may select only a frontier quote; only that vendor may confirm it. No payments or escrow are involved.
 
-[Open ScopeFront](https://chongqianli7.github.io/scopefront-genlayer/)
+[Open ScopeFront](https://chongqianli7.github.io/scopefront-genlayer/) · [Deployed contract](https://explorer-studio.genlayer.com/address/0x7a25061Ef97f8f7f269988C7d4F85b029776C86B) · [Network evidence](evidence/studionet.json)
 
 ## Why this exists
 
@@ -48,7 +48,7 @@ Success requires FINALIZED, MAJORITY_AGREE, successful leader execution, receipt
 
 ## Trust and scope
 
-Signed quotes are authoritative inputs to this comparison, not independent proof of a real business, correct price basis or delivery. All test accounts may be controlled by one operator. The contract does not fetch linked evidence, verify identity, detect collusion, assess workmanship, audit hidden fees, or execute a legal agreement. Vendors can lie or withhold a quote/confirmation. Public terms and prices are immutable. A clarification requires a fresh request and fresh signatures. Avoid confidential quotation text.
+The structured integer total and request currency are the comparison price. Monetary wording in terms is not independently reconciled or converted; inspect conflicting price statements before relying on a quote. Signed quotes are authoritative inputs to this comparison, not independent proof of a real business, correct price basis or delivery. All test accounts may be controlled by one operator. The contract does not fetch linked evidence, verify identity, detect collusion, assess workmanship, audit hidden fees, or execute a legal agreement. Vendors can lie or withhold a quote/confirmation. Public terms and prices are immutable. A clarification requires a fresh request and fresh signatures. Avoid confidential quotation text.
 
 The final confirmation is an application acknowledgement of the selected exact quote, not a payment, binding purchase order or guarantee. There is no deadline, cancellation, vendor replacement or administrator override in this bounded version.
 
@@ -63,3 +63,7 @@ The final confirmation is an application acknowledgement of the selected exact q
 - `evidence/`: network results and verification boundaries.
 
 MIT licensed.
+
+## Published network example
+
+Select **Live on GenLayer → Read published example** to read request `web-1793128145389` without a wallet. The source-verified contract is `0x7a25061Ef97f8f7f269988C7d4F85b029776C86B`. Ten finalized transactions demonstrate deployment, opening, three signed vendor quotes, independent scope consensus, rejection of a dominated selection, valid buyer selection, rejection of the wrong confirming vendor, and selected-vendor confirmation. The final record is CONFIRMED. All four test wallets are controlled by one operator; the brief and offers are synthetic, and all transfers are zero value. See [validation](evidence/VALIDATION.md).
