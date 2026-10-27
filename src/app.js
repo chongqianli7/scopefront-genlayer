@@ -1,0 +1,77 @@
+import './style.css';
+import * as chain from './chain.js';
+import {fixture,criteria,terms,cents} from './model.js';
+import {escapeHTML as e,short,json,success,confirmedFailure,addressOK} from './receipt.js';
+const KEY='scopefront-pending-1',DRAFT='scopefront-draft-1';
+let storageError='';
+function restore(key,fallback){try{return JSON.parse(localStorage.getItem(key)||'null')||fallback;}catch{storageError='Browser storage is unavailable or damaged. Signing is disabled until storage works.';return fallback;}}
+let draft=restore(DRAFT,{address:'',owner:'',id:'website-01',title:'Commission a small website',currency:'USD',criteria:criteria.join('\n'),vendors:'',price:'1000.00',terms:terms[1],vendor:'',hash:''});
+let pending=restore(KEY,null),record=fixture(),mode='example',wallet=null,busy=false,notice=storageError||'Explore the example, then compare your own signed quotations.',verified='',recordAddress='',receipt=null;
+const money=(v,currency)=>new Intl.NumberFormat('en',{style:'currency',currency}).format(v/100);
+const b=(id,label,disabled=false,style='')=>`<button data-action="${id}" ${disabled||busy?'disabled':''} class="${style}">${label}</button>`;
+const f=(id,label,area=false)=>`<label>${label}${area?`<textarea ${busy?'disabled':''} id="${id}" data-field="${id}">${e(draft[id])}</textarea>`:`<input ${busy?'disabled':''} id="${id}" data-field="${id}" value="${e(draft[id])}">`}</label>`;
+function render(){
+ const live=mode==='live',r=record,offers=r?r.vendors.map(v=>r.offers[v]).filter(Boolean):[];
+ document.querySelector('#app').innerHTML=`
+ <header><a class="brand" href="#"><img src="./mark.svg" alt="">ScopeFront<span>THE QUOTE BOUNDARY DESK</span></a><nav><a href="#desk">Compare quotes</a><a href="#method">The rule</a><a href="https://github.com/chongqianli7/scopefront-genlayer" target="_blank" rel="noopener">Source ↗</a></nav><span class="network">● GENLAYER / 61999</span></header>
+ <main><section class="hero"><div><p class="eyebrow">THE CHEAPEST PRICE IS ONLY HALF THE QUOTE.</p><h1>Same brief.<br>Different <em>boundaries.</em></h1><p class="lede">See what each price actually includes. Keep the real trade-offs. Let both sides confirm the exact quote.</p><a class="cta" href="#desk">Find the scope frontier <span>↘</span></a><p class="micro">SIGNED TERMS → VALIDATOR CONSENSUS → A VISIBLE SHORTLIST</p></div><div class="hero-chart" aria-label="A low-price limited-scope offer and a higher-price broader-scope offer both remain candidates"><span class="chart-caption">PRICE / SCOPE</span><div class="grid"></div><div class="step-line"></div><div class="point p1"><i>A</i><span>LESS COST<br>LESS SCOPE</span></div><div class="point p2"><i>B</i><span>MORE SCOPE<br>A REAL TRADE-OFF</span></div><div class="point p3"><i>C</i><span>SAME SCOPE<br>HIGHER COST</span></div><div class="chart-footer">01 — NO HIDDEN SCORING WEIGHTS</div></div></section>
+ <section id="method" class="method"><div><span>01 / SIGN</span><p>Vendors stand behind<br>their own fixed-price terms.</p></div><div><span>02 / INTERPRET</span><p>Validators agree on each<br>scope item's coverage.</p></div><div><span>03 / KEEP THE TRADE-OFFS</span><p>Code removes dominated quotes.<br>Buyer selects. Vendor confirms.</p></div></section>
+ <section id="desk"><div class="section-title"><div><p class="eyebrow">THE COMPARISON DESK</p><h2>What comes with the number?</h2></div><div class="toggle">${b('example','Worked example',false,live?'':'active')}${b('live','Live on GenLayer',false,live?'active':'')}</div></div>
+ <div class="mode ${live?'on':''}"><b>${live?'LIVE · STABLE STUDIONET':'ILLUSTRATIVE · NO CHAIN TRANSACTIONS'}</b><span>${live?'The contract is the source of the record below.':'Authored examples explain the rule. They are not model or network results.'}</span></div>
+ ${live?`<div class="connection"><div class="fields">${f('address','Contract address')}${f('owner','Buyer address')}${f('id','Request ID')}</div><div class="actions">${b('connect',wallet?short(wallet.owner):'Connect wallet')}${b('published','Read published example')}${b('read','Verify & read request')}${b('deploy','Deploy own desk')}</div><small>All transactions transfer zero value. This application holds no funds.</small></div>`:`<div class="scenarios">${b('tradeoff','Price vs scope')}${b('complete','More scope earns a place')}${b('unclear','Ambiguity stays out')}</div>`}
+ <div class="notice" role="status">${e(notice)}</div>
+ ${pending&&live?`<div class="pending"><b>Unresolved transaction: ${e(pending.method)}</b><code>${e(pending.hash||'Wallet outcome unknown — supply the exact hash from wallet activity.')}</code>${f('hash','Existing transaction hash')}${b('resume','Resume tracking — reads only')}</div>`:''}
+ ${r?`<div class="request-heading"><div><span>${e(r.id)} / ${e(r.status)}</span><h3>${e(r.title)}</h3></div><span>${e(r.currency)} · FIXED TOTALS</span></div><div class="quotes">${offers.map((o,i)=>{const row=r.rows.find(x=>x.vendor===o.vendor),candidate=r.frontier.candidates?.includes(o.vendor),dom=r.frontier.comparisons?.find(x=>x.vendor===o.vendor)?.dominated_by||[],unclear=r.frontier.needs_clarification?.includes(o.vendor);return `<article class="quote ${candidate?'candidate':''}"><div class="quote-top"><span>QUOTE ${String.fromCharCode(65+r.vendors.indexOf(o.vendor))}</span><span class="pill ${candidate?'good':''}">${candidate?'ON THE FRONTIER':unclear?'NEEDS CLARIFICATION':dom.length?'DOMINATED':'AWAITING CONSENSUS'}</span></div><h4>${money(o.cents,r.currency)}</h4><code>${short(o.vendor)}</code><div class="scope-list">${r.criteria.map((c,j)=>{const cell=row?.cells[j];return `<div><span class="dot ${cell?.label||''}">${cell?.label==='INCLUDED'?'✓':cell?.label==='EXCLUDED'?'−':'?'}</span><p>${e(c)}<small>${cell?.label||'UNASSESSED'}</small></p></div>`}).join('')}</div><details><summary>Signed terms & evidence</summary><blockquote>${e(o.terms)}</blockquote>${row?row.cells.map((c,j)=>`<p><b>Item ${j+1} · ${e(c.label)}</b><br>${e(c.reason)}</p><q>${e(c.quote||'No supporting promise found.')}</q>`).join(''):''}</details>${dom.length?`<p class="explanation">No cheaper and no broader than ${dom.map(v=>'Quote '+String.fromCharCode(65+r.vendors.indexOf(v))).join(', ')}.</p>`:candidate?`<p class="explanation">No other fully assessed quote is cheaper with at least this much scope, or broader at the same price.</p>`:unclear?'<p class="explanation">At least one scope item is unclear. This quote cannot dominate another or be selected.</p>':''}${live?b('choose-'+o.vendor,r.selected===o.vendor?'Selected': 'Select this quote',r.status!=='COMPARED'||!candidate||!wallet||wallet.owner!==r.owner||!!pending):b('demo-'+o.vendor,r.selected===o.vendor?'Selected locally':'Explore selection',!candidate||r.status!=='COMPARED')}</article>`}).join('')}</div><div class="decision"><div><b>${r.frontier.candidates?.length||0} candidate quotes</b><p>${r.status==='CONFIRMED'?'Both signing addresses confirmed this exact quote. No payment or legal contract is executed.':r.status==='AWAITING_VENDOR'?'Buyer selected '+short(r.selected)+'. Only that vendor may confirm.':'A frontier is a set of trade-offs, not a quality ranking. Excluded scope is still excluded.'}</p></div><div>${b('export','Export evidence JSON')}${live?b('confirm','Confirm as selected vendor',!wallet||wallet.owner!==r.selected||r.status!=='AWAITING_VENDOR'||!!pending):b('reset','Reset example')}</div></div>`:'<div class="empty">Read an existing request, or open a new quote round below.</div>'}
+ ${live?`<div class="operations"><details><summary>Buyer / open a quote round <span>IMMUTABLE BRIEF</span></summary>${f('title','Request title')}${f('currency','Currency: USD / EUR / GBP / CNY')}${f('criteria','Scope items — one per line, 2–5 items',true)}${f('vendors','Invited vendor addresses — one per line, 2–4 distinct addresses',true)}${b('open','Open request',!wallet||!!pending)}</details><details><summary>Vendor / submit fixed quotation <span>SIGNED ONCE</span></summary>${f('price','Fixed all-inclusive total in request currency')}${f('terms','Exact scope, exclusions and price basis',true)}${b('quote','Sign my quote',!wallet||!!pending||!r||r.status!=='QUOTING'||!r.vendors.includes(wallet.owner)||!!r.offers[wallet.owner])}</details><div class="compare-box"><h3>All quotes received?</h3><p>Consensus assesses the entire scope matrix. Comparisons freeze permanently after success.</p>${b('compare','Compare with GenLayer',!wallet||!!pending||!r||r.status!=='QUOTING'||offers.length!==r.vendors.length,'primary')}</div></div>`:''}
+ <details class="limits"><summary>What this comparison establishes</summary><p>Only vendors' signed text is assessed. Identity, truth, delivery quality, hidden fees and solvency are not verified. Explicit exclusions stay visible even on frontier quotes. Any uncertainty excludes that quote from selection. A lower price with equal or greater declared scope dominates; all scope items are independent optional dimensions, with no mandatory-item or quality weighting. Distinct wallets do not prove independent businesses. Quotes are public and immutable; a clarification requires a new request and fresh signatures. Parties can withhold quotes or confirmation. No payments, escrow, legal agreement or automatic award.</p></details></section></main><footer><span>ScopeFront / Make the trade-off explicit.</span><span>BUILT ON GENLAYER · STABLE STUDIONET</span></footer>`;
+ document.querySelectorAll('[data-field]').forEach(el=>el.oninput=()=>{draft[el.id]=el.value;try{localStorage.setItem(DRAFT,json(draft));}catch{storageError='Cannot persist drafts. Signing disabled.';}});
+ document.querySelectorAll('[data-action]').forEach(el=>el.onclick=()=>action(el.dataset.action));
+}
+async function guard(fn){if(busy)return;busy=true;render();try{await fn();}catch(err){notice=err?.message||String(err);}finally{busy=false;render();}}
+function persist(){localStorage.setItem(KEY,json(pending));if(JSON.parse(localStorage.getItem(KEY)).method!==pending.method)throw Error('Pending storage verification failed.');}
+function clear(){localStorage.removeItem(KEY);pending=null;}
+async function load(){await chain.verify(draft.address);verified=draft.address.toLowerCase();const next=await chain.read(draft.address,draft.owner,draft.id);record=next;recordAddress=draft.address.toLowerCase();receipt=null;}
+async function track(){
+ if(!pending)throw Error('No pending transaction.');
+ if(!pending.hash){if(!/^0x[\da-f]{64}$/i.test(draft.hash))throw Error('Paste the exact transaction hash from wallet activity.');pending.hash=draft.hash;persist();}
+ const tx=await chain.wait(pending.hash);chain.bind(tx,pending);
+ if(!success(tx)){receipt=tx;if(confirmedFailure(tx)){clear();throw Error('Finalized execution failed. No successful action is claimed.');}throw Error('No confirmed successful finalization. Keep the hash and resume.');}
+ receipt=tx;
+ if(pending.method==='deploy'){
+  const a=tx.data?.contract_address;if(!addressOK(a))throw Error('Deployment address is not available yet. Resume tracking.');await chain.verify(a);draft.address=a;verified=a.toLowerCase();record=null;notice='Deployment finalized and exact source verified. Open a request below.';
+ }else{
+  await chain.verify(pending.address);const next=await chain.read(pending.address,pending.owner,pending.id);
+  const m=pending.method;
+  if(m==='quote'&&(!next.offers[pending.from]||next.offers[pending.from].cents!==pending.args[2]||next.offers[pending.from].terms!==pending.args[3])||m==='compare'&&!next.rows.length||m==='select'&&next.selected!==pending.args[1]||m==='confirm'&&next.status!=='CONFIRMED')throw Error('State readback does not confirm the action. Resume tracking.');
+  record=next;recordAddress=pending.address;draft.address=pending.address;draft.owner=pending.owner;draft.id=pending.id;notice='Finalized, agreeing execution and matching chain state verified.';
+ }
+ clear();
+}
+async function send(method,args,owner=draft.owner,id=draft.id){
+ if(pending)throw Error('Resume the existing transaction first.');if(storageError)throw Error(storageError);await chain.check(wallet);
+ if(method!=='deploy'){await chain.verify(draft.address);verified=draft.address.toLowerCase();}
+ pending={method,args,address:draft.address.toLowerCase(),from:wallet.owner,owner:owner.toLowerCase(),id,hash:'',createdAt:new Date().toISOString()};persist();
+ try{pending.hash=method==='deploy'?await wallet.client.deployContract({code:chain.source,args:[],value:0n,leaderOnly:false}):await wallet.client.writeContract({address:pending.address,functionName:method,args,value:0n,leaderOnly:false});persist();}
+ catch(err){if(err?.code===4001||err?.cause?.code===4001||/user rejected|user denied/i.test(err.message||''))clear();else notice='Submission outcome uncertain. Recover the exact hash; do not send again.';throw err;}
+ await track();
+}
+async function action(a){
+ if(a==='export'){const blob=new Blob([json({mode:mode==='example'?'ILLUSTRATIVE':'CHAIN_READBACK',network:61999,contract:mode==='live'?recordAddress:null,record,receipt,exportedAt:new Date().toISOString()})],{type:'application/json'});const link=document.createElement('a');link.href=URL.createObjectURL(blob);link.download='scopefront-evidence.json';link.click();URL.revokeObjectURL(link.href);return;}
+ if(['tradeoff','complete','unclear','example','reset'].includes(a)){mode='example';record=fixture(['complete','unclear'].includes(a)?a:'tradeoff');receipt=null;notice='Illustrative example. No chain transactions.';render();return;}
+ if(a==='live'){mode='live';record=null;receipt=null;notice='Read the published example, or connect to open your own request.';render();return;}
+ if(a.startsWith('demo-')){record.selected=a.slice(5);record.status='AWAITING_VENDOR';notice='Illustrative buyer selection. In live mode, the selected vendor signs confirmation.';render();return;}
+ await guard(async()=>{
+ if(a==='connect'){wallet=await chain.connect();notice='Connected '+short(wallet.owner)+' on Stable Studionet.';return;}
+ if(a==='published'){const d=await fetch('./deployment.json').then(r=>r.json());if(!d.address)throw Error('Published network example is not configured yet.');Object.assign(draft,{address:d.address,owner:d.owner,id:d.id});await load();notice='Published request read from finalized chain state.';return;}
+ if(a==='read'){await load();notice='Exact deployed source verified; finalized request loaded.';return;}
+ if(a==='resume'){await track();return;}
+ if(a==='deploy'){await send('deploy',[],wallet?.owner||'',draft.id);return;}
+ if(a==='open'){await send('open_request',[draft.id,draft.title,draft.currency,JSON.stringify(draft.criteria.split('\n').map(x=>x.trim()).filter(Boolean)),JSON.stringify(draft.vendors.split('\n').map(x=>x.trim()).filter(Boolean))],wallet?.owner||'');draft.owner=wallet.owner;return;}
+ if(!record||recordAddress!==draft.address.toLowerCase()||record.owner!==draft.owner.toLowerCase()||record.id!==draft.id)throw Error('Read this request before signing.');
+ if(a==='quote')await send('quote',[draft.owner,draft.id,cents(draft.price),draft.terms]);
+ else if(a==='compare')await send('compare',[draft.owner,draft.id]);
+ else if(a.startsWith('choose-')){if(wallet?.owner!==record.owner)throw Error('Only the buyer may select.');await send('select',[draft.id,a.slice(7)]);}
+ else if(a==='confirm')await send('confirm',[draft.owner,draft.id]);
+ });
+}
+render();

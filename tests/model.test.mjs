@@ -1,0 +1,7 @@
+import test from 'node:test';import assert from 'node:assert/strict';import{fixture,frontier,cents}from'../src/model.js';import{success,confirmedFailure}from'../src/receipt.js';
+test('cheaper narrow and dearer broad remain; equal scope higher price is dominated',()=>{const r=fixture();assert.deepEqual(r.frontier.candidates,r.vendors.slice(0,2));assert.deepEqual(r.frontier.comparisons[2].dominated_by,[r.vendors[1]]);});
+test('uncertain scope cannot dominate or be selected',()=>{const r=fixture('unclear');assert(!r.frontier.candidates.includes(r.vendors[1]));assert.deepEqual(r.frontier.needs_clarification,[r.vendors[1]]);assert(r.frontier.candidates.includes(r.vendors[2]));});
+test('strictly broader scope preserves higher priced trade-off',()=>assert.equal(fixture('complete').frontier.candidates.length,3));
+test('ties retain both vendors; no fabricated tie break',()=>{const o=[{vendor:'a',cents:1},{vendor:'b',cents:1}],r=o.map(x=>({vendor:x.vendor,cells:[{label:'INCLUDED'}]}));assert.deepEqual(frontier(o,r).candidates,['a','b']);});
+test('price parsing rejects signs exponent zero and overflow',()=>{assert.equal(cents('12.30'),1230);for(const s of ['0','-1','1e3','1.001','10000001'])assert.throws(()=>cents(s));});
+test('finalization alone does not establish execution or consensus success',()=>{const tx={status:7,result:6,consensus_data:{leader_receipt:[{mode:'leader',execution_result:'SUCCESS'}]}};assert(success(tx));assert(!success({...tx,result:7}));assert(confirmedFailure({...tx,result:7}));assert(!success({...tx,status:'ACCEPTED'}));});
