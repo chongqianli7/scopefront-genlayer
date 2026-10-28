@@ -1,0 +1,184 @@
+{
+  "schema": "scopefront-decision-1",
+  "createdAt": "2026-10-28T17:52:10.546Z",
+  "provenance": "FINALIZED_CHAIN_READBACK",
+  "network": 61999,
+  "contract": "0x7a25061ef97f8f7f269988c7d4f85b029776c86b",
+  "record": {
+    "criteria": [
+      "Create a responsive four-page website.",
+      "Include original editable design source files.",
+      "Include thirty days of post-launch bug fixes."
+    ],
+    "currency": "USD",
+    "frontier": {
+      "candidates": [
+        "0x73f7428d8100477c96c32087b7fdcf3f94c0547f",
+        "0xfced59b6de0765875ab68213110ee3e928c780ef"
+      ],
+      "comparisons": [
+        {
+          "dominated_by": [],
+          "vendor": "0x73f7428d8100477c96c32087b7fdcf3f94c0547f"
+        },
+        {
+          "dominated_by": [],
+          "vendor": "0xfced59b6de0765875ab68213110ee3e928c780ef"
+        },
+        {
+          "dominated_by": [
+            "0xfced59b6de0765875ab68213110ee3e928c780ef"
+          ],
+          "vendor": "0xb5e264e095552f125c28f97378b348b6de9d70ec"
+        }
+      ],
+      "needs_clarification": []
+    },
+    "id": "web-1793128145389",
+    "offers": {
+      "0x73f7428d8100477c96c32087b7fdcf3f94c0547f": {
+        "cents": 80000,
+        "terms": "Fixed all-inclusive total: 800 USD. Includes a responsive four-page website. Original editable design source files are excluded. Thirty days of post-launch bug fixes are excluded.",
+        "vendor": "0x73f7428d8100477c96c32087b7fdcf3f94c0547f"
+      },
+      "0xb5e264e095552f125c28f97378b348b6de9d70ec": {
+        "cents": 120000,
+        "terms": "Fixed all-inclusive total: 1200 USD. Includes a responsive four-page website and original editable design source files. Thirty days of post-launch bug fixes are excluded.",
+        "vendor": "0xb5e264e095552f125c28f97378b348b6de9d70ec"
+      },
+      "0xfced59b6de0765875ab68213110ee3e928c780ef": {
+        "cents": 100000,
+        "terms": "Fixed all-inclusive total: 1000 USD. Includes a responsive four-page website and original editable design source files. Thirty days of post-launch bug fixes are excluded.",
+        "vendor": "0xfced59b6de0765875ab68213110ee3e928c780ef"
+      }
+    },
+    "owner": "0x23b39fa74ad2f5751b8450dc31f965ac41ac7555",
+    "protocol": "scopefront-1",
+    "rows": [
+      {
+        "cells": [
+          {
+            "criterion": 0,
+            "label": "INCLUDED",
+            "quote": "Includes a responsive four-page website.",
+            "reason": "Explicit unconditional promise of the complete requested website at the fixed all-inclusive total."
+          },
+          {
+            "criterion": 1,
+            "label": "EXCLUDED",
+            "quote": "Original editable design source files are excluded.",
+            "reason": "Explicit denial of the requested design source files."
+          },
+          {
+            "criterion": 2,
+            "label": "EXCLUDED",
+            "quote": "Thirty days of post-launch bug fixes are excluded.",
+            "reason": "Explicit denial of the requested post-launch bug fixes."
+          }
+        ],
+        "vendor": "0x73f7428d8100477c96c32087b7fdcf3f94c0547f"
+      },
+      {
+        "cells": [
+          {
+            "criterion": 0,
+            "label": "INCLUDED",
+            "quote": "Includes a responsive four-page website",
+            "reason": "Explicit unconditional promise of the complete requested website at the fixed all-inclusive total."
+          },
+          {
+            "criterion": 1,
+            "label": "INCLUDED",
+            "quote": "original editable design source files",
+            "reason": "Explicit unconditional promise to include the requested editable design source files."
+          },
+          {
+            "criterion": 2,
+            "label": "EXCLUDED",
+            "quote": "Thirty days of post-launch bug fixes are excluded.",
+            "reason": "Explicit denial of the requested post-launch bug fixes."
+          }
+        ],
+        "vendor": "0xfced59b6de0765875ab68213110ee3e928c780ef"
+      },
+      {
+        "cells": [
+          {
+            "criterion": 0,
+            "label": "INCLUDED",
+            "quote": "Includes a responsive four-page website",
+            "reason": "Explicit unconditional promise of the complete requested website at the fixed all-inclusive total."
+          },
+          {
+            "criterion": 1,
+            "label": "INCLUDED",
+            "quote": "original editable design source files",
+            "reason": "Explicit unconditional promise to include the requested editable design source files."
+          },
+          {
+            "criterion": 2,
+            "label": "EXCLUDED",
+            "quote": "Thirty days of post-launch bug fixes are excluded.",
+            "reason": "Explicit denial of the requested post-launch bug fixes."
+          }
+        ],
+        "vendor": "0xb5e264e095552f125c28f97378b348b6de9d70ec"
+      }
+    ],
+    "selected": "0xfced59b6de0765875ab68213110ee3e928c780ef",
+    "status": "CONFIRMED",
+    "title": "Four-page website quotations",
+    "vendors": [
+      "0x73f7428d8100477c96c32087b7fdcf3f94c0547f",
+      "0xfced59b6de0765875ab68213110ee3e928c780ef",
+      "0xb5e264e095552f125c28f97378b348b6de9d70ec"
+    ]
+  },
+  "decision": {
+    "budget": 100000,
+    "required": [
+      1
+    ],
+    "assessed": true,
+    "rows": [
+      {
+        "vendor": "0x73f7428d8100477c96c32087b7fdcf3f94c0547f",
+        "cents": 80000,
+        "eligible": false,
+        "reasons": [
+          "Required scope not explicitly included: 2"
+        ],
+        "missing": [
+          1
+        ],
+        "budgetHeadroom": 20000
+      },
+      {
+        "vendor": "0xfced59b6de0765875ab68213110ee3e928c780ef",
+        "cents": 100000,
+        "eligible": true,
+        "reasons": [],
+        "missing": [],
+        "budgetHeadroom": 0
+      },
+      {
+        "vendor": "0xb5e264e095552f125c28f97378b348b6de9d70ec",
+        "cents": 120000,
+        "eligible": false,
+        "reasons": [
+          "Dominated on the protocol frontier",
+          "Over budget"
+        ],
+        "missing": [],
+        "budgetHeadroom": -20000
+      }
+    ],
+    "eligible": [
+      "0xfced59b6de0765875ab68213110ee3e928c780ef"
+    ],
+    "cheapest": [
+      "0xfced59b6de0765875ab68213110ee3e928c780ef"
+    ]
+  },
+  "limits": "Local buyer preferences applied to the existing consensus matrix. No new validator assessment, automatic award, payment, or proof of vendor delivery."
+}
