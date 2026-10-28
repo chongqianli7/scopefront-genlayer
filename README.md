@@ -40,6 +40,14 @@ npm run dev
 
 `dist/` is a portable static build with relative paths. The app pins GenLayerJS 1.1.8 and viem 2.57.8. It needs no server, paid AI API key, or server-held wallet key. The canonical contract is `contracts/scopefront.py`. Network configuration is Stable Studionet only: chain ID 61999, RPC https://studio.genlayer.com/api.
 
+## Buyer decision workspace (v1.1)
+
+The comparison desk now includes a budget and required-scope workspace. Load the published chain example or use an illustration, scroll to **Buyer decision workspace**, enter a maximum fixed total, check required scope items, and press **Apply preferences**. An exact-budget quote qualifies. Required items qualify only when consensus labels them INCLUDED. Unclear, unassessed and dominated quotes stay outside the shortlist. Equal cheapest offers remain tied.
+
+The table explains every exclusion and shows budget headroom. Download the full decision report as JSON (record, provenance and preferences included), or the result table as CSV with amounts in minor units. Preferences reset when changing requests or illustrated scenarios. They are local buyer decision support and do not modify contract rules or automatically select a vendor.
+
+See [release changes and reproduction steps](MILESTONE.md).
+
 ## Transaction recovery
 
 The UI verifies complete deployed source bytes and protocol before writes. It persists a pending intent before asking for a signature and saves the returned hash immediately. A timeout or unknown wallet response keeps new writes blocked. Paste the exact existing hash from wallet activity and use **Resume tracking**; this only reads. Explicit signature rejection releases the intent.
